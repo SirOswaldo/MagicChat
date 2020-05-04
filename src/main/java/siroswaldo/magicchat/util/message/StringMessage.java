@@ -16,6 +16,7 @@
  */
 package siroswaldo.magicchat.util.message;
 
+import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.ChatColor;
 import org.bukkit.Server;
 import org.bukkit.command.CommandSender;
@@ -81,7 +82,11 @@ public class StringMessage {
     public void announceMessage(Server server) {
         server.broadcastMessage(message);
     }
-    
+
+    public void addPlaceHolders(Player player){
+        message = PlaceholderAPI.setPlaceholders(player, message);
+    }
+
     @Override
     public String toString(){
         return message;

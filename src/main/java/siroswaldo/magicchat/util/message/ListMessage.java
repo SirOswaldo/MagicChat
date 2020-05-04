@@ -18,6 +18,8 @@ package siroswaldo.magicchat.util.message;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.ChatColor;
 import org.bukkit.Server;
 import org.bukkit.command.CommandSender;
@@ -93,6 +95,16 @@ public class ListMessage {
     public void announceMessage(Server server) {
         for (String line : message) {
             server.broadcastMessage(line);
+        }
+    }
+
+    public void addLine(String text){
+        message.add(text);
+    }
+
+    public void addPlaceHolders(Player player){
+        for (int i = 0; i < message.size(); i++) {
+            message.set(i, PlaceholderAPI.setPlaceholders(player, message.get(i)));
         }
     }
 

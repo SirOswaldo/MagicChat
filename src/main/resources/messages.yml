@@ -1,0 +1,14 @@
+prefix: "&b&lMagic&9&lChat &3&l>>>"
+magicChat:
+  help:
+    - "&3&l>>>>>>>> &b&lMagic&9&lChat&b&lHelp &3&l<<<<<<<<"
+    - " &6/MagicChat help"
+    - " &6/MagicChat reload"
+    - " &6/MagicChat version"
+    - "&3&l>>>>>>>> &b&lMagic&9&lChat&b&lHelp &3&l<<<<<<<<"
+  noPermission: "&cNo tienes permisos!"
+  emptyArg: "&cEl argumento esta vacio!"
+  invalidArg: "&cEl argumento es invalido!"
+  reloadComplete: "&aEl complemento fue recargado con exito!"
+channelSelected: "&aSeleccionaste el canal &e%channel% &a!"
+channelAlreadySelected: "&cEl canal &e%channel% &cya esta seleccionado!"

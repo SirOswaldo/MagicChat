@@ -2,6 +2,8 @@ package siroswaldo.magicchat;
 
 import org.bukkit.plugin.java.JavaPlugin;
 import siroswaldo.magicchat.channel.ChannelMap;
+import siroswaldo.magicchat.commands.MagicChatCommand;
+import siroswaldo.magicchat.events.MagicChatEvents;
 import siroswaldo.magicchat.playerdata.PlayerDataMap;
 import siroswaldo.magicchat.util.message.EnableAndDisable;
 import siroswaldo.magicchat.util.yaml.YamlFiles;
@@ -21,15 +23,33 @@ public class MagicChat extends JavaPlugin {
             enableAndDisable.sendDisable();
             getServer().getPluginManager().disablePlugin(this);
         }
+        registerFiles();
         channelMap = new ChannelMap(this);
         channelMap.loadChannels();
         playerDataMap = new PlayerDataMap(this);
-
+        playerDataMap.loadPlayerData();
+        registerCommands();
+        registerEvents();
     }
 
     @Override
     public void onDisable() {
-        super.onDisable();
+        enableAndDisable.sendDisable();
+    }
+
+    private void registerFiles(){
+        yamlFiles = new YamlFiles(this);
+        yamlFiles.addFile("settings");
+        yamlFiles.addFile("messages");
+        yamlFiles.registerFiles();
+    }
+
+    private void registerCommands(){
+        getCommand("magicchat").setExecutor(new MagicChatCommand(this));
+    }
+
+    private void registerEvents(){
+        getServer().getPluginManager().registerEvents(new MagicChatEvents(this), this);
     }
 
     public YamlFiles getYamlFiles() {

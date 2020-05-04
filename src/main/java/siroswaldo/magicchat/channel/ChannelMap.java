@@ -21,11 +21,18 @@ public class ChannelMap {
         Set<String> names = settings.getConfigurationSection("channels").getValues(false).keySet();
         for (String name:names){
             boolean enable = true;
+            boolean Default = false;
             String format = "";
             String color = "";
             String permission = "";
             boolean autoJoin = true;
             List<String> aliases = new ArrayList<>();
+
+            if (settings.contains("channels."+name+".default")){
+                Default = settings.getBoolean("channels."+name+".default");
+            } else {
+                enable = false;
+            }
             // Format
             if (settings.contains("channels."+name+".format")){
                 format = settings.getString("channels."+name+".format");
@@ -57,7 +64,7 @@ public class ChannelMap {
                 enable = false;
             }
             if (enable){
-                Channel channel = new Channel(name,format, color, permission, autoJoin, aliases);
+                Channel channel = new Channel(name, Default, format, color, permission, autoJoin, aliases);
                 channels.put(name, channel);
             }
         }
@@ -82,5 +89,9 @@ public class ChannelMap {
 
     public Channel getChannel(String channel){
         return channels.get(channel);
+    }
+
+    public List<String> getChannels(){
+        return new ArrayList<>(channels.keySet());
     }
 }
