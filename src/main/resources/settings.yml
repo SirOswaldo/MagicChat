@@ -1,0 +1,26 @@
+channels:
+  global:
+    format: "%vault_prefix% &f%player_name% &7>"
+    color: "&7"
+    permission: "none"
+    autoJoin: true
+    aliases:
+      - "globalchannel"
+      - "global"
+      - "g"
+  vip:
+    format: "&e&lVIP &c&l| &f%player_name% &7>"
+    color: "&e"
+    permission: "magicchat.channels.vip"
+    autoJoin: true
+    aliases:
+      - "vipchannel"
+      - "vc"
+  staff:
+    format: "&4&lSTAFF &c&l| &f%player_name% &7>"
+    color: "&b"
+    permission: "magicchat.channels.staff"
+    autoJoin: true
+    aliases:
+      - "staffchannel"
+      - "sc"

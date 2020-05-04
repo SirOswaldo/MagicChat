@@ -1,0 +1,5 @@
+main: siroswaldo.magicchat.MagicChat
+version: 1.0.0
+name: MagicChat
+author: SirOswaldo
+depend: [PlaceholderAPI]
