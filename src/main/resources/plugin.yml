@@ -3,3 +3,11 @@ version: 1.0.0
 name: MagicChat
 author: SirOswaldo
 depend: [PlaceholderAPI]
+commands:
+  magicchat:
+    description: "Comando principal del complemento!"
+permissions:
+  magicchat.admin:
+    description: "Permiso que permite ejecutar el comando principal!"
+  magicchat.color:
+    description: "Permiso que permite usar codigos de color en los canales!"
