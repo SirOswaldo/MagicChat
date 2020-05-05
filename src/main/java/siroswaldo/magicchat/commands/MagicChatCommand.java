@@ -1,6 +1,5 @@
 package siroswaldo.magicchat.commands;
 
-import com.sun.org.apache.xerces.internal.xs.StringList;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

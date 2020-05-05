@@ -19,6 +19,14 @@ public class CustomInventory {
         this.inventory = Bukkit.createInventory(null, this.size, this.title);
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
     public Inventory getInventory() {
         return inventory;
     }

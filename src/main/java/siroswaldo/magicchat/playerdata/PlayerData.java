@@ -6,8 +6,8 @@ import java.util.UUID;
 
 public class PlayerData {
 
-    private UUID uuid;
-    private List<String> channels;
+    private final UUID uuid;
+    private final List<String> channels;
     private String currentChannel;
 
     public PlayerData(UUID uuid){

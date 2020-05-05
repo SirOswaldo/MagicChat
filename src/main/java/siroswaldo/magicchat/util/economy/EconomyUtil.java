@@ -6,17 +6,17 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class EconomyUtil {
 
-    private JavaPlugin plugin;
-    private Economy econ;
-    private boolean enable;
+    private final JavaPlugin javaPlugin;
+    private Economy economy;
+    private final boolean enable;
 
-    public EconomyUtil(JavaPlugin plugin) {
-        this.plugin = plugin;
+    public EconomyUtil(JavaPlugin javaPlugin) {
+        this.javaPlugin = javaPlugin;
         enable = setupEconomy();
     }
 
     public Economy getEconomy() {
-        return econ;
+        return economy;
     }
 
     public boolean isEnable() {
@@ -24,14 +24,14 @@ public class EconomyUtil {
     }
 
     private boolean setupEconomy() {
-        if (plugin.getServer().getPluginManager().getPlugin("Vault") == null) {
+        if (javaPlugin.getServer().getPluginManager().getPlugin("Vault") == null) {
             return false;
         }
-        RegisteredServiceProvider<Economy> rsp = plugin.getServer().getServicesManager().getRegistration(Economy.class);
+        RegisteredServiceProvider<Economy> rsp = javaPlugin.getServer().getServicesManager().getRegistration(Economy.class);
         if (rsp == null) {
             return false;
         }
-        econ = rsp.getProvider();
-        return econ != null;
+        economy = rsp.getProvider();
+        return economy != null;
     }
 }

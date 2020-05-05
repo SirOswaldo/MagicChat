@@ -91,7 +91,7 @@ public class MagicChatEvents implements Listener {
             List<String> names = playerData.getChannels();
             for (String name:names){
                 Channel channel = magicChat.getChannelsMap().getChannel(name);
-                if(channel.getAliases().contains(command)){
+                if (channel.getCommand().equalsIgnoreCase(command)){
                     event.setCancelled(true);
                     FileConfiguration messages = magicChat.getYamlFiles().getFileConfiguration("messages");
                     if (playerData.getCurrentChannel().equals(name)){
@@ -107,6 +107,27 @@ public class MagicChatEvents implements Listener {
                         channelSelected.sendMessage(player);
                     }
                     return;
+                } else {
+                    List<String> aliases = channel.getAliases();
+                    for (String alias:aliases){
+                        if (alias.equalsIgnoreCase(command)){
+                            event.setCancelled(true);
+                            FileConfiguration messages = magicChat.getYamlFiles().getFileConfiguration("messages");
+                            if (playerData.getCurrentChannel().equals(name)){
+                                StringMessage channelAlreadySelected = new StringMessage(messages.getString("channelAlreadySelected"));
+                                channelAlreadySelected.addPlaceHolders(player);
+                                channelAlreadySelected.addColor();
+                                channelAlreadySelected.sendMessage(player);
+                            } else {
+                                playerData.setCurrentChannel(name);
+                                StringMessage channelSelected = new StringMessage(messages.getString("channelSelected"));
+                                channelSelected.addPlaceHolders(player);
+                                channelSelected.addColor();
+                                channelSelected.sendMessage(player);
+                            }
+                            return;
+                        }
+                    }
                 }
             }
         }
@@ -125,7 +146,9 @@ public class MagicChatEvents implements Listener {
                 message.addColor();
             }
             channel.sendMessage(player, message.getMessage());
-
+            if (channel.isBungee()){
+                channel.sendMessageBungee(magicChat,player, message.getMessage());
+            }
         }
     }
 

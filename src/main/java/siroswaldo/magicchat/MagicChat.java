@@ -5,12 +5,15 @@ import siroswaldo.magicchat.channel.ChannelMap;
 import siroswaldo.magicchat.commands.MagicChatCommand;
 import siroswaldo.magicchat.events.MagicChatEvents;
 import siroswaldo.magicchat.playerdata.PlayerDataMap;
+import siroswaldo.magicchat.util.bungee.BungeeMessages;
 import siroswaldo.magicchat.util.message.EnableAndDisable;
 import siroswaldo.magicchat.util.yaml.YamlFiles;
 
 public class MagicChat extends JavaPlugin {
 
     private EnableAndDisable enableAndDisable;
+    private BungeeMessages bungeeMessages;
+
 
     private YamlFiles yamlFiles;
     private ChannelMap channelMap;
@@ -28,8 +31,11 @@ public class MagicChat extends JavaPlugin {
         channelMap.loadChannels();
         playerDataMap = new PlayerDataMap(this);
         playerDataMap.loadPlayerData();
+        bungeeMessages = new BungeeMessages(this, "MagicChat");
+        bungeeMessages.registerBungeeMessaging();
         registerCommands();
         registerEvents();
+        enableAndDisable.sendEnable();
     }
 
     @Override

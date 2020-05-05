@@ -13,8 +13,8 @@ import siroswaldo.magicchat.util.inventory.tasks.InventoryOpenTask;
 
 public class CustomInventoryEvents implements Listener, InventoryEvents {
 
-    private JavaPlugin plugin;
-    private String title;
+    private final JavaPlugin plugin;
+    private final String title;
 
     public CustomInventoryEvents(JavaPlugin plugin, String title) {
         this.plugin = plugin;

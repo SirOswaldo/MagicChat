@@ -23,15 +23,15 @@ public class ChannelMap {
             boolean enable = true;
             boolean Default = false;
             String format = "";
-            String color = "";
-            String permission = "";
-            boolean autoJoin = true;
+            String color = "&f";
+            String permission = "none";
+            boolean autoJoin = false;
+            String command = "";
             List<String> aliases = new ArrayList<>();
+            boolean bungee = false;
 
             if (settings.contains("channels."+name+".default")){
                 Default = settings.getBoolean("channels."+name+".default");
-            } else {
-                enable = false;
             }
             // Format
             if (settings.contains("channels."+name+".format")){
@@ -42,29 +42,33 @@ public class ChannelMap {
             // Color
             if (settings.contains("channels."+name+".color")){
                 color = settings.getString("channels."+name+".color");
-            } else {
-                enable = false;
             }
             // Permission
             if (settings.contains("channels."+name+".permission")){
                 permission = settings.getString("channels."+name+".permission");
-            } else {
-                enable = false;
             }
             // AutoJoin
             if (settings.contains("channels."+name+".autoJoin")){
                 autoJoin = settings.getBoolean("channels."+name+".autoJoin");
+            }
+            // Command
+            if (settings.contains("channels."+name+".command")){
+                autoJoin = settings.getBoolean("channels."+name+".command");
             } else {
                 enable = false;
             }
             // Aliases
             if (settings.contains("channels."+name+".aliases")){
                 autoJoin = settings.getBoolean("channels."+name+".aliases");
-            } else {
-                enable = false;
             }
+            // Bungee
+            if (settings.contains("channels."+name+".bungee")){
+                bungee = settings.getBoolean("channels."+name+".bungee");
+            }
+
+
             if (enable){
-                Channel channel = new Channel(name, Default, format, color, permission, autoJoin, aliases);
+                Channel channel = new Channel(name, Default, format, color, permission, autoJoin, command, aliases, bungee);
                 channels.put(name, channel);
             }
         }

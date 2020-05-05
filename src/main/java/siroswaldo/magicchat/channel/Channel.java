@@ -1,7 +1,10 @@
 package siroswaldo.magicchat.channel;
 
+import com.google.common.io.ByteArrayDataOutput;
+import com.google.common.io.ByteStreams;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.entity.Player;
+import siroswaldo.magicchat.MagicChat;
 import siroswaldo.magicchat.util.message.StringMessage;
 
 import java.util.ArrayList;
@@ -15,18 +18,22 @@ public class Channel {
     private String color;
     private String permission;
     private boolean autoJoin;
+    private String command;
     private List<String> aliases;
+    private boolean bungee;
 
     List<Player> players;
 
-    public Channel(String name, boolean Default, String format, String color, String permission, boolean autoJoin, List<String> aliases) {
+    public Channel(String name, boolean Default, String format, String color, String permission, boolean autoJoin, String command, List<String> aliases, boolean bungee) {
         this.name = name;
         this.Default = Default;
         this.format = format;
         this.color = color;
         this.permission = permission;
         this.autoJoin = autoJoin;
+        this.command = command;
         this.aliases = aliases;
+        this.bungee = bungee;
 
         players = new ArrayList<>();
     }
@@ -43,6 +50,16 @@ public class Channel {
         for(Player player:players){
             player.sendMessage(message.toString() + text);
         }
+    }
+
+    public void sendMessageBungee(MagicChat magicChat, Player player, String text){
+        ByteArrayDataOutput out = ByteStreams.newDataOutput();
+        out.writeUTF("network");
+        StringMessage message = new StringMessage(format + color);
+        message.addPlaceHolders(player);
+        message.addColor();
+        out.writeUTF(message.toString());
+        player.sendPluginMessage(magicChat, "MagicChat", out.toByteArray());
     }
 
     /**
@@ -158,6 +175,14 @@ public class Channel {
         this.autoJoin = autoJoin;
     }
 
+    public void setCommand(String command) {
+        this.command = command;
+    }
+
+    public String getCommand() {
+        return command;
+    }
+
     /**
      * Obtener los alias del canal
      * @return
@@ -172,5 +197,21 @@ public class Channel {
      */
     public void setAliases(List<String> aliases) {
         this.aliases = aliases;
+    }
+
+    /**
+     * Devuelve verdadero si el canal esta activado como canal proxy
+     * @return
+     */
+    public boolean isBungee() {
+        return bungee;
+    }
+
+    /**
+     * Establecer si el canal es un canal proxy
+     * @param bungee
+     */
+    public void setBungee(boolean bungee) {
+        this.bungee = bungee;
     }
 }

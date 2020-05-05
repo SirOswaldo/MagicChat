@@ -9,5 +9,8 @@
         <module name="MagicChat" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="MagicChatBungee" target="8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

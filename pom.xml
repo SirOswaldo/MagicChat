@@ -6,6 +6,7 @@
 
     <groupId>siroswaldo</groupId>
     <artifactId>MagicChat</artifactId>
+    <packaging>jar</packaging>
     <version>1.0.0</version>
     <build>
         <plugins>
@@ -38,6 +39,7 @@
     </repositories>
 
     <dependencies>
+
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>

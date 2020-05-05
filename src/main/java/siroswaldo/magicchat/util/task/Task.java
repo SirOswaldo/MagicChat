@@ -33,7 +33,7 @@ public abstract class Task{
 
     public void startScheduler() {
         BukkitScheduler scheduler = plugin.getServer().getScheduler();
-        task = scheduler.runTaskTimer(plugin, this::actions,0L,ticks);
+        task = scheduler.runTaskTimer(plugin, this::actions, 0L, ticks);
     }
 
     public void stopScheduler(){

@@ -2,31 +2,37 @@ channels:
   global:
     default: true
     format: "%vault_prefix% &f%player_name% &7>"
-    color: "&7"
     permission: "none"
     autoJoin: true
+    command: "globalchannel"
     aliases:
-      - "globalchannel"
       - "global"
       - "g"
   vip:
-    default: false
     format: "&e&lVIP &c&l| &f%player_name% &7>"
     color: "&e"
     permission: "magicchat.channels.vip"
     autoJoin: true
+    command: "vipchannel"
     aliases:
-      - "vipchannel"
       - "vc"
   staff:
-    default: false
     format: "&4&lSTAFF &c&l| &f%player_name% &7>"
     color: "&b"
     permission: "magicchat.channels.staff"
     autoJoin: true
+    command: "staffchannel"
     aliases:
-      - "staffchannel"
       - "sc"
+  network:
+    format: "&b&lNETWORK &c&l| &f%player_name% &7>"
+    color: "&b"
+    permission: "magicchat.channels.network"
+    autoJoin: true
+    command: "networkchannel"
+    aliases:
+      - "nc"
+    bungee: true
 joinMessage:
   enable: true
   message: "&b%player_name% &eIngreso al servidor!"

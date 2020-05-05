@@ -8,7 +8,7 @@ import siroswaldo.magicchat.util.task.Task;
 public class InventoryOpenTask extends Task {
 
     private final Player player;
-    private Inventory inventory;
+    private final Inventory inventory;
     private int time;
 
     public InventoryOpenTask(JavaPlugin plugin,Player player, Inventory inventory, int time) {
