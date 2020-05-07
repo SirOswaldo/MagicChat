@@ -10,5 +10,6 @@ magicChat:
   emptyArg: "&cEl argumento esta vacio!"
   invalidArg: "&cEl argumento es invalido!"
   reloadComplete: "&aEl complemento fue recargado con exito!"
+noPermissionToSelectChannel: "&cNo tienes permisos para ingresar al canal &e%channel% &c!"
 channelSelected: "&aSeleccionaste el canal &e%channel% &a!"
 channelAlreadySelected: "&cEl canal &e%channel% &cya esta seleccionado!"

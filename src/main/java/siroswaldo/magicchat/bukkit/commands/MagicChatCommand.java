@@ -1,10 +1,10 @@
-package siroswaldo.magicchat.commands;
+package siroswaldo.magicchat.bukkit.commands;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
-import siroswaldo.magicchat.MagicChat;
+import siroswaldo.magicchat.bukkit.MagicChat;
 import siroswaldo.magicchat.util.message.ListMessage;
 import siroswaldo.magicchat.util.message.StringMessage;
 

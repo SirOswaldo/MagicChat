@@ -1,0 +1,4 @@
+main: siroswaldo.magicchat.bungee.MagicChat
+version: 1.5.0
+name: MagicChat
+author: SirOswaldo

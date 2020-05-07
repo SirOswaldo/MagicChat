@@ -1,7 +1,7 @@
 package siroswaldo.magicchat.playerdata;
 
 import org.bukkit.entity.Player;
-import siroswaldo.magicchat.MagicChat;
+import siroswaldo.magicchat.bukkit.MagicChat;
 import siroswaldo.magicchat.channel.Channel;
 import siroswaldo.magicchat.channel.ChannelMap;
 

@@ -5,33 +5,24 @@ channels:
     permission: "none"
     autoJoin: true
     command: "globalchannel"
-    aliases:
-      - "global"
-      - "g"
   vip:
     format: "&e&lVIP &c&l| &f%player_name% &7>"
-    color: "&e"
+    color: "red"
     permission: "magicchat.channels.vip"
     autoJoin: true
     command: "vipchannel"
-    aliases:
-      - "vc"
   staff:
     format: "&4&lSTAFF &c&l| &f%player_name% &7>"
     color: "&b"
     permission: "magicchat.channels.staff"
     autoJoin: true
     command: "staffchannel"
-    aliases:
-      - "sc"
   network:
     format: "&b&lNETWORK &c&l| &f%player_name% &7>"
-    color: "&b"
+    color: "aqua"
     permission: "magicchat.channels.network"
     autoJoin: true
     command: "networkchannel"
-    aliases:
-      - "nc"
     bungee: true
 joinMessage:
   enable: true

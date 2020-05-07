@@ -1,7 +1,7 @@
 package siroswaldo.magicchat.channel;
 
 import org.bukkit.configuration.file.FileConfiguration;
-import siroswaldo.magicchat.MagicChat;
+import siroswaldo.magicchat.bukkit.MagicChat;
 
 import java.util.*;
 
@@ -27,7 +27,6 @@ public class ChannelMap {
             String permission = "none";
             boolean autoJoin = false;
             String command = "";
-            List<String> aliases = new ArrayList<>();
             boolean bungee = false;
 
             if (settings.contains("channels."+name+".default")){
@@ -57,10 +56,6 @@ public class ChannelMap {
             } else {
                 enable = false;
             }
-            // Aliases
-            if (settings.contains("channels."+name+".aliases")){
-                autoJoin = settings.getBoolean("channels."+name+".aliases");
-            }
             // Bungee
             if (settings.contains("channels."+name+".bungee")){
                 bungee = settings.getBoolean("channels."+name+".bungee");
@@ -68,7 +63,7 @@ public class ChannelMap {
 
 
             if (enable){
-                Channel channel = new Channel(name, Default, format, color, permission, autoJoin, command, aliases, bungee);
+                Channel channel = new Channel(name, Default, format, color, permission, autoJoin, command, bungee);
                 channels.put(name, channel);
             }
         }

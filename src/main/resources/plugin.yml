@@ -1,11 +1,13 @@
-main: siroswaldo.magicchat.MagicChat
-version: 1.0.0
+main: siroswaldo.magicchat.bukkit.MagicChat
+version: 1.5.0
 name: MagicChat
 author: SirOswaldo
 depend: [PlaceholderAPI]
 commands:
   magicchat:
     description: "Comando principal del complemento!"
+  test:
+    description: "Comando de preba"
 permissions:
   magicchat.admin:
     description: "Permiso que permite ejecutar el comando principal!"

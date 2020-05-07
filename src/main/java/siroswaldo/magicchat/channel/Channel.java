@@ -2,9 +2,8 @@ package siroswaldo.magicchat.channel;
 
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
-import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.entity.Player;
-import siroswaldo.magicchat.MagicChat;
+import siroswaldo.magicchat.bukkit.MagicChat;
 import siroswaldo.magicchat.util.message.StringMessage;
 
 import java.util.ArrayList;
@@ -19,23 +18,60 @@ public class Channel {
     private String permission;
     private boolean autoJoin;
     private String command;
-    private List<String> aliases;
     private boolean bungee;
 
     List<Player> players;
 
-    public Channel(String name, boolean Default, String format, String color, String permission, boolean autoJoin, String command, List<String> aliases, boolean bungee) {
+    public Channel(String name, boolean Default, String format, String color, String permission, boolean autoJoin, String command, boolean bungee) {
         this.name = name;
         this.Default = Default;
         this.format = format;
-        this.color = color;
+        if (color.equals("black")){
+            this.color = "&0";
+        } else if (color.equals("dark_blue")){
+            this.color = "&1";
+        }else if (color.equals("dark_green")){
+            this.color = "&2";
+        }else if (color.equals("dark_aqua")){
+            this.color = "&3";
+        }else if (color.equals("dark_red")){
+            this.color = "&4";
+        }else if (color.equals("dark_purple")){
+            this.color = "&5";
+        }else if (color.equals("gold")){
+            this.color = "&6";
+        }else if (color.equals("light_gray")){
+            this.color = "&7";
+        }else if (color.equals("dark_gray")){
+            this.color = "&8";
+        }else if (color.equals("blue")){
+            this.color = "&9";
+        }else if (color.equals("green")){
+            this.color = "&a";
+        }else if (color.equals("aqua")){
+            this.color = "&b";
+        }else if (color.equals("red")){
+            this.color = "&c";
+        }else if (color.equals("pink")){
+            this.color = "&d";
+        }else if (color.equals("yellow")){
+            this.color = "&e";
+        }else{
+            this.color = "&f";
+        }
         this.permission = permission;
         this.autoJoin = autoJoin;
         this.command = command;
-        this.aliases = aliases;
         this.bungee = bungee;
 
         players = new ArrayList<>();
+    }
+
+
+    public void sendMessage(String message){
+        for(Player player:players){
+            player.sendMessage(message);
+        }
     }
 
     /**
@@ -43,23 +79,23 @@ public class Channel {
      * @param @{@link Player} Jugador que envio el comando
      * @param @{@link String} Mensaje que envio el jugador
      */
-    public void sendMessage(Player sender, String text){
+    public void sendMessage(MagicChat magicChat, Player sender, String text){
         StringMessage message = new StringMessage(format + color);
         message.addPlaceHolders(sender);
         message.addColor();
-        for(Player player:players){
-            player.sendMessage(message.toString() + text);
+        message.appendText(text);
+        if (bungee){
+            ByteArrayDataOutput out = ByteStreams.newDataOutput();
+            out.writeUTF("SendMessage");
+            out.writeUTF(name);
+            out.writeUTF(message.getMessage());
+            magicChat.getServer().sendPluginMessage(magicChat, "MagicChat", out.toByteArray());
+        }else{
+            for(Player player:players){
+                message.sendMessage(player);
+            }
+            message.logConsole(magicChat.getServer());
         }
-    }
-
-    public void sendMessageBungee(MagicChat magicChat, Player player, String text){
-        ByteArrayDataOutput out = ByteStreams.newDataOutput();
-        out.writeUTF("network");
-        StringMessage message = new StringMessage(format + color);
-        message.addPlaceHolders(player);
-        message.addColor();
-        out.writeUTF(message.toString());
-        player.sendPluginMessage(magicChat, "MagicChat", out.toByteArray());
     }
 
     /**
@@ -181,22 +217,6 @@ public class Channel {
 
     public String getCommand() {
         return command;
-    }
-
-    /**
-     * Obtener los alias del canal
-     * @return
-     */
-    public List<String> getAliases() {
-        return aliases;
-    }
-
-    /**
-     * Establecer los alias del canal
-     * @param aliases
-     */
-    public void setAliases(List<String> aliases) {
-        this.aliases = aliases;
     }
 
     /**

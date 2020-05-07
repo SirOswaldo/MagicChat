@@ -87,6 +87,9 @@ public class StringMessage {
         message = PlaceholderAPI.setPlaceholders(player, message);
     }
 
+    public void logConsole(Server server){
+        server.getConsoleSender().sendMessage(message);
+    }
     @Override
     public String toString(){
         return message;

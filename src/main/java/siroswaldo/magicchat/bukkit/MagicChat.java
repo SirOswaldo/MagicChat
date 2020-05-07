@@ -1,11 +1,12 @@
-package siroswaldo.magicchat;
+package siroswaldo.magicchat.bukkit;
 
 import org.bukkit.plugin.java.JavaPlugin;
 import siroswaldo.magicchat.channel.ChannelMap;
-import siroswaldo.magicchat.commands.MagicChatCommand;
-import siroswaldo.magicchat.events.MagicChatEvents;
+import siroswaldo.magicchat.bukkit.commands.MagicChatCommand;
+import siroswaldo.magicchat.bukkit.commands.TestCommand;
+import siroswaldo.magicchat.bukkit.events.MagicChatEvents;
 import siroswaldo.magicchat.playerdata.PlayerDataMap;
-import siroswaldo.magicchat.util.bungee.BungeeMessages;
+import siroswaldo.magicchat.bukkit.listener.BungeeMessages;
 import siroswaldo.magicchat.util.message.EnableAndDisable;
 import siroswaldo.magicchat.util.yaml.YamlFiles;
 
@@ -31,16 +32,22 @@ public class MagicChat extends JavaPlugin {
         channelMap.loadChannels();
         playerDataMap = new PlayerDataMap(this);
         playerDataMap.loadPlayerData();
-        bungeeMessages = new BungeeMessages(this, "MagicChat");
+        bungeeMessages = new BungeeMessages(this);
         bungeeMessages.registerBungeeMessaging();
         registerCommands();
         registerEvents();
         enableAndDisable.sendEnable();
+        Pruebas pruebas = new Pruebas(this);
+        pruebas.startScheduler();
     }
 
     @Override
     public void onDisable() {
         enableAndDisable.sendDisable();
+    }
+
+    public BungeeMessages getBungeeMessages() {
+        return bungeeMessages;
     }
 
     private void registerFiles(){
@@ -52,6 +59,7 @@ public class MagicChat extends JavaPlugin {
 
     private void registerCommands(){
         getCommand("magicchat").setExecutor(new MagicChatCommand(this));
+        getCommand("test").setExecutor(new TestCommand(this));
     }
 
     private void registerEvents(){
