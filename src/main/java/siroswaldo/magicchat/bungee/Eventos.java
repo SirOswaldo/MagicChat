@@ -4,7 +4,6 @@ import net.md_5.bungee.api.event.ChatEvent;
 import net.md_5.bungee.api.event.PluginMessageEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
-import siroswaldo.magicchat.bungee.MagicChat;
 
 public class Eventos implements Listener {
 

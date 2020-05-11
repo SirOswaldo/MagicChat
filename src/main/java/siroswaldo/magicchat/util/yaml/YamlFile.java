@@ -81,7 +81,7 @@ public class YamlFile {
     public void registerFile() {
         file = new File(plugin.getDataFolder(), name);
         if (!file.exists()) {
-            this.getFileConfiguration().options().copyDefaults(true);
+            getFileConfiguration().options().copyDefaults(true);
             saveFile();
         }
     }
